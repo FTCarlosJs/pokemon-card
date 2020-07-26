@@ -6,13 +6,12 @@ const Card = ({name = "bulbasaur"}) => {
   useEffect( () => {
     fetch(`https://pokeapi.co/api/v2/pokemon/${name}/`)
     .then(res => res.json())
-    .then(
-      res => fetch(res.forms[0].url)
-            .then(resp => resp.json())
-            .then(resp => setPokemon({
-                   name: res.name,
-                   img: resp.sprites.front_shiny
-             }))
+    .then(res => fetch(res.forms[0].url))
+    .then(resp => resp.json())
+    .then(resp => setPokemon({
+            name: resp.name,
+            img: resp.sprites.front_shiny
+      })
     )
   },[name])
 
